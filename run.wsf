@@ -1,0 +1,13 @@
+<package>
+	<job id="SkirmishSummary">
+		<?job debug="true"?>
+		<script language="VBScript">
+			Dim csvName
+			csvName = InputBox("Start evaluation " & vbNewLine & "Enter csv file name: (filename.csv)")
+			MsgBox csvName
+			Dim ReturnValue
+			ReturnValue = Shell("C:\python23\python ""C:\Users\gajda\Desktop\Projects-and-practise\Skirmishes summary\script.py"" ")
+			MsgBox ReturnValue
+		</script>
+	</job>
+</package>
