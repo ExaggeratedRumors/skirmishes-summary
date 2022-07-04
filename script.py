@@ -7,6 +7,7 @@ import skrplt.plotmaker as pm
 
 sample_size = 1000000
 
+# Read data from first argue
 filename = sys.argv[1]
 print("#### Read file ####")
 if not filename.__contains__(".csv"):
