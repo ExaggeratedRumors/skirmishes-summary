@@ -9,7 +9,7 @@ sample_size = 1000000
 
 # Read data from first argue
 filename = sys.argv[1]
-print("#### Read file ####")
+print("#### Open csv file ####")
 if not filename.__contains__(".csv"):
     filename += ".csv"
 file = open(filename, encoding='UTF-8')
@@ -18,9 +18,11 @@ raw_data = []
 for row in itertools.islice(csv_reader, sample_size):
     raw_data.append(row)
 
+size = len(raw_data)
+print(f"#### Read {size} samples ####")
 print("#### Cleanup data ####")
 dataset = dm.cleanup_data(raw_data)
-print(f"#### Read {len(dataset)} samples ####")
+print(f"#### Removed {size - len(dataset)} samples ####")
 dataset = dm.create_labeled_dataset(dataset)
 file.close()
 
