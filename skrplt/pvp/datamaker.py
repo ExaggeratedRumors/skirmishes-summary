@@ -1,12 +1,7 @@
 import math
 import re
 import pandas
-
-min_advantage = 3
-max_advantage = 13
-min_level = 30
-max_level = 300
-advantage_factor = 0.05  # in common player A can be 5% higher in level than player B
+import skrplt.utils as utils
 
 
 def cleanup_data(data):
@@ -28,11 +23,12 @@ def cleanup_data(data):
         if sample[8] == sample[9]:
             continue
         # remove high advantage and low level
-        legal_advantage = min(max_advantage, max(min_advantage, int(int(sample[6]) * advantage_factor)))
-        if abs(sample[6] - sample[7]) > legal_advantage or sample[6] < min_level or sample[7] < min_level:
+        legal_advantage = min(utils.max_advantage,
+                              max(utils.min_advantage, int(int(sample[6]) * utils.advantage_factor)))
+        if abs(sample[6] - sample[7]) > legal_advantage or sample[6] < utils.min_level or sample[7] < utils.min_level:
             continue
-        sample[6] = int(10 * math.floor(sample[6] / 10)) if sample[6] < max_level else max_level
-        sample[7] = int(10 * math.floor(sample[7] / 10)) if sample[7] < max_level else max_level
+        sample[6] = int(10 * math.floor(sample[6] / 10)) if sample[6] < utils.max_level else utils.max_level
+        sample[7] = int(10 * math.floor(sample[7] / 10)) if sample[7] < utils.max_level else utils.max_level
         new_data.append(sample)
     return new_data
 
@@ -49,15 +45,26 @@ def create_labeled_dataset(data):
     # dataset = dataset.drop_duplicates()
 
 
+def filter_servers(data):
+    if utils.server == '0':
+        return data
+    if utils.server == '1':
+        return data[utils.public_servers.__contains__(data.server)]
+    if utils.server == '2':
+        return data[utils.private_servers.__contains__(data.server)]
+    else:
+        return data[data.server == utils.server]
+
+
 def filter_profession(data, profession):
     dataset = data[data.first_player_prof == profession].append(data[data.second_player_prof == profession])
     result = {
-        "w": {x: [0, 0] for x in range(min_level, max_level + 1, 10)},
-        "b": {x: [0, 0] for x in range(min_level, max_level + 1, 10)},
-        "p": {x: [0, 0] for x in range(min_level, max_level + 1, 10)},
-        "m": {x: [0, 0] for x in range(min_level, max_level + 1, 10)},
-        "t": {x: [0, 0] for x in range(min_level, max_level + 1, 10)},
-        "h": {x: [0, 0] for x in range(min_level, max_level + 1, 10)}
+        "w": {x: [0, 0] for x in range(utils.min_level, utils.max_level + 1, 10)},
+        "b": {x: [0, 0] for x in range(utils.min_level, utils.max_level + 1, 10)},
+        "p": {x: [0, 0] for x in range(utils.min_level, utils.max_level + 1, 10)},
+        "m": {x: [0, 0] for x in range(utils.min_level, utils.max_level + 1, 10)},
+        "t": {x: [0, 0] for x in range(utils.min_level, utils.max_level + 1, 10)},
+        "h": {x: [0, 0] for x in range(utils.min_level, utils.max_level + 1, 10)}
     }
     result.pop(profession)
     for sample in dataset.values:

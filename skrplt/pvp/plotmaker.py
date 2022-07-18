@@ -1,5 +1,5 @@
 import matplotlib.pyplot as plt
-from skrplt import datamaker
+from skrplt.pvp import datamaker
 
 
 def create_bar_graph(data, profession):
