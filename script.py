@@ -33,10 +33,10 @@ print(f"#### Removed {size - len(dataset)} samples ####")
 
 for prof in utils.target_profession:
     print(f"#### Create output for {prof} ####")
-    pm.create_bar_graph(dataset, prof)
+    pm.create_result_graph(dataset, prof)
 
 # TODO:
-#   - read hiperparameters from Utils file (range, prof, server)
+#   - create date filter
+#   - create pve service
 #   - create windows visualization for plots
 #   - create pdf conversion for plots
-#   - create filters for hiperparameters
