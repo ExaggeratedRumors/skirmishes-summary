@@ -14,6 +14,16 @@ public_servers = ['aether', 'aldous', 'berufs', 'brutal', 'classic',
                   'lelwani', 'majuna', 'nomada', 'perkun', 'tarhuna',
                   'telawel', 'tempest', 'zemyna', 'zorza']
 
+professions = {'w': 'Wojownik', 'b': 'Tancerz ostrzy', 'p': 'Paladyn',
+                    'm': 'Mag', 't': 'Tropiciel', 'h': 'Łowca'}
+
+colossi = ['Wernoradzki Drakolisz', 'Reuzen', 'Arachin Podstępny', 'Lulukav', 'Vashkar',
+           'Hydrokora Chimeryczna', 'Amaimon Soploręki', 'Umibozu', 'Regulus Mętnooki', 'Mamlambo']
+
+titans = ['Tanroth', 'Tezcatlipoca', 'Maddok Magua', 'Przyzywacz Demonów', 'Łowczyni Wspomnień',
+          'Versus Zoons', 'Piekielny Arcymag', 'Renegat Baulus', 'Zabójczy Królik', 'Dziewicza Orlica']
+
+
 config = configparser.ConfigParser()
 config.read('config.ini')
 server = config['general']['server']

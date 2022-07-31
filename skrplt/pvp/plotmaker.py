@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 from skrplt.pvp import datamaker
+from skrplt import utils
 
 
 def create_result_graph(data, profession):
@@ -39,7 +40,7 @@ def create_result_graph(data, profession):
             plots[i].text(j - 0.2, 0.2, number_of_fights[j], ha='center', va='center', fontsize=9, rotation=-90)
 
         # paint titles and descriptions
-        plots[i].set_title(f"{profession} vs {prof}")
+        plots[i].set_title(f"{utils.professions[profession]} vs {utils.professions[prof]}")
         plots[i].set_xticklabels(data[prof], rotation=-90)
         plots[i].set_ylim([0, 1])
         plots[i].plot(x, [0.5 for _ in x], 'k--')
