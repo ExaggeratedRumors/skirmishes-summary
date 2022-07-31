@@ -8,8 +8,8 @@ def create_result_graph(data, profession):
     wr = [0, 0, 0, 0, 0]
     plots = [None] * 6
     fig, ((plots[0], plots[1], plots[2]), (plots[3], plots[4], plots[5])) = plt.subplots(2, 3)
-    fig.suptitle(f'Results for profession: {profession}\n'
-                 f'Numbers inside graph means amount of samples in pointed level range',
+    fig.suptitle(f'Wyniki dla profesji: {utils.professions[profession]}\n'
+                 f'Liczby w centralnej części każdego słupka oznaczają liczbę próbek',
                  fontsize=14, fontweight='bold')
 
     i = 0
@@ -44,8 +44,8 @@ def create_result_graph(data, profession):
         plots[i].set_xticklabels(data[prof], rotation=-90)
         plots[i].set_ylim([0, 1])
         plots[i].plot(x, [0.5 for _ in x], 'k--')
-        plots[i].set_ylabel('WR')
-        plots[i].set_xlabel('lvl range')
+        plots[i].set_ylabel('Odsetek zwycięstw')
+        plots[i].set_xlabel('Przedział poziomowy')
         i += 1
 
     # paint summary graph
@@ -69,6 +69,6 @@ def create_summary_graph(ax, wr, data):
     ax.set_ylim([0, 1])
     x = range(len(wr))
     ax.plot(x, [0.5 for _ in x], 'k--')
-    ax.set_ylabel('WR')
-    ax.set_xlabel('professions')
-    ax.set_title("summary")
+    ax.set_ylabel('Odestek zwycęstw')
+    ax.set_xlabel('Profesja')
+    ax.set_title("Zestawienie wszystkich relacji")

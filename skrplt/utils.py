@@ -27,7 +27,6 @@ titans = ['Tanroth', 'Tezcatlipoca', 'Maddok Magua', 'Przyzywacz Demonów', 'Ło
 config = configparser.ConfigParser()
 config.read('config.ini')
 server = config['general']['server']
-analysis_type = config['general']['analysis_type']
 sample_size = int(config['general']['sample_size'])
 
 min_lvl = int(config['pve']['min_lvl'])

@@ -69,5 +69,7 @@ def create_group_amount_label(data, npc_name_array):
     for sample in data.values:
         if not sample[3] in result:
             continue
+        if int(sample[1]) != 1:
+            continue
         result[sample[3]][int(sample[2]) - utils.min_group] += 1
     return result
